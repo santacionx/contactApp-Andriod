@@ -48,6 +48,7 @@ For text sizes, use `@dimen/_16ssp` for 16 scaled sp and `@dimen/_14ssp` for 14 
 For dimensions, use `@dimen/_50sdp` for 50 scaled dp, `@dimen/_8sdp` for 8 scaled dp, and `@dimen/_12sdp` for 12 scaled dp.
 
 ## Screenshots
+![alert on exit](s4.png)
 ![ theme with  list ](s3.png)
 ![screen](s1.png)
 ![ screen scroll ](s2.png)

@@ -1,5 +1,6 @@
 package com.example.recycleapp
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -7,7 +8,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+
 class MainActivity : AppCompatActivity() {
+    private var exitConfirmation = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -67,4 +70,28 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
+    override fun onBackPressed() {
+        if (exitConfirmation) {
+            super.onBackPressed()
+        } else {
+            showExitConfirmation()
+        }
+    }
+
+    private fun showExitConfirmation() {
+        AlertDialog.Builder(this)
+            .setTitle("Exit")
+            .setMessage("Are you sure you want to exit?")
+            .setPositiveButton("Yes") { _, _ ->
+                exitConfirmation = true
+                onBackPressed()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
 }
+
+
