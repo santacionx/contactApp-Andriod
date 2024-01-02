@@ -2,6 +2,8 @@ package com.example.recycleapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -9,6 +11,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Toggle button click method
+        val button = findViewById<Button>(R.id.toggle_button) // Use findViewById with the correct type
+
+        var isDarkMode = false // Assuming the initial mode is light
+
+        button.setOnClickListener {
+            isDarkMode = !isDarkMode
+            AppCompatDelegate.setDefaultNightMode(if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
+
         val contactList = arrayListOf(
             ContactModel(R.drawable.image1, "John Doe", "123-456-7890"),
             ContactModel(R.drawable.image2, "Alice Smith", "987-654-3210"),
@@ -52,4 +66,5 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
+
 }
